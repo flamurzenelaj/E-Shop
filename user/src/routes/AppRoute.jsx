@@ -6,7 +6,7 @@ function AppRoutes() {
   return (
     <Fragment>
       <Routes>
-      <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<HomePage />} />
       </Routes>
     </Fragment>
   )

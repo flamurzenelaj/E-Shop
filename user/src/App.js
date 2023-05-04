@@ -1,15 +1,18 @@
-import { Fragment } from "react";
-import { BrowserRouter } from "react-router-dom";
-import AppRoutes from "./routes/AppRoute";
+import React, { Component, Fragment } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './routes/AppRoute'
 
-function App() {
-  return (
-    <Fragment>
-      <BrowserRouter>
-      <AppRoutes />
-      </BrowserRouter>
-    </Fragment>
-  );
+
+class App extends Component {
+  render() {
+    return (
+      <Fragment>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </Fragment>
+    )
+  }
 }
 
-export default App;
+export default App

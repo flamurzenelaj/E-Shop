@@ -1,9 +1,24 @@
 import React, { Fragment } from 'react'
+import HomeTop from '../components/home/HomeTop'
+import NavMenuDesktop from '../components/common/NavMenuDesktop'
+import NavMenuMobile from '../components/common/NavMenuMobile'
+import HomeTopMobile from '../components/home/HomeTopMobile'
+
 
 function HomePage() {
   return (
     <Fragment>
-        <h1>Home Page</h1>
+      <div className="Desktop">
+        <NavMenuDesktop />
+        <HomeTop />
+      </div>
+
+      <div className="Mobile">
+        <NavMenuMobile />
+        <HomeTopMobile />
+      </div>
+
+      <HomeTop />
     </Fragment>
   )
 }
