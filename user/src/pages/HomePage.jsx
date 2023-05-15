@@ -4,6 +4,7 @@ import NavMenuDesktop from '../components/common/NavMenuDesktop'
 import NavMenuMobile from '../components/common/NavMenuMobile'
 import HomeTopMobile from '../components/home/HomeTopMobile'
 import FooterDesktop from '../components/common/FooterDesktop'
+import FooterMobile from '../components/common/FooterMobile'
 
 
 function HomePage() {
@@ -18,7 +19,13 @@ function HomePage() {
         <NavMenuMobile />
         <HomeTopMobile />
       </div>
-      <FooterDesktop />
+      <div className="Desktop">
+        <FooterDesktop />
+      </div>
+      <div className="Mobile">
+        <FooterMobile />
+      </div>
+
     </Fragment>
   )
 }
