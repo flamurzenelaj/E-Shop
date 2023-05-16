@@ -4,6 +4,7 @@ import Logo from '../../assets/images/easyshop.png';
 import { Link } from 'react-router-dom';
 import MegaMenuAll from '../home/MegaMenuAll';
 
+
 export class NavMenuDesktop extends Component {
 
     constructor() {
