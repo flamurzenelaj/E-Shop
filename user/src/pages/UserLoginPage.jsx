@@ -3,23 +3,32 @@ import { Fragment } from 'react'
 import UserLogin from '../components/common/UserLogin';
 import NavMenuDesktop from '../components/common/NavMenuDesktop';
 import NavMenuMobile from '../components/common/NavMenuMobile';
+import FooterDesktop from '../components/common/FooterDesktop';
+import FooterMobile from '../components/common/FooterMobile';
 
 function UserLoginPage() {
-  useEffect(()=>{
-    window.scroll(0,0);
-  },[])
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [])
   return (
     <Fragment>
-    <div className="Desktop">
-      <NavMenuDesktop />
-    </div>
-    <div className="Mobile">
-      <NavMenuMobile />
-    </div>
-    
-    <UserLogin />
+      <div className="Desktop">
+        <NavMenuDesktop />
+      </div>
+      <div className="Mobile">
+        <NavMenuMobile />
+      </div>
 
-  </Fragment>
+      <UserLogin />
+
+      <div className="Desktop">
+        <FooterDesktop />
+      </div>
+      <div className="Mobile">
+        <FooterMobile />
+      </div>
+
+    </Fragment>
   )
 }
 
