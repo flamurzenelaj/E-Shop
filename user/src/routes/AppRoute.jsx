@@ -6,6 +6,7 @@ import ContactPage from '../pages/ContactPage'
 import PurchasePage from '../pages/PurchasePage'
 import PrivacyPage from '../pages/PrivacyPage'
 import RefundPage from '../pages/RefundPage'
+import NotificationPage from '../pages/NotificationPage'
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
         <Route path='/purchase' element={<PurchasePage />} />
         <Route path='/privacy' element={<PrivacyPage />} />
         <Route path='/refund' element={<RefundPage />} />
+        <Route path='/notification' element={<NotificationPage />} />
       </Routes>
     </Fragment>
   )
