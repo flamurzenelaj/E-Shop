@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Component, useEffect } from 'react'
 import { Fragment } from 'react'
 import UserLogin from '../components/common/UserLogin';
 import NavMenuDesktop from '../components/common/NavMenuDesktop';
@@ -7,6 +7,7 @@ import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 
 function UserLoginPage() {
+
   useEffect(() => {
     window.scroll(0, 0);
   }, [])
