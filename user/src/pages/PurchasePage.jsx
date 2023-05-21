@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
-import { Component, Fragment } from 'react'
+import React, { Component } from 'react'
+import { Fragment } from 'react'
 import NavMenuDesktop from '../components/common/NavMenuDesktop';
 import NavMenuMobile from '../components/common/NavMenuMobile';
 import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
-import Contact from '../components/common/Contact';
+import Purchase from '../components/others/Purchase';
 
-export class ContactPage extends Component {
-
+export class PurchasePage extends Component {
     componentDidMount() {
         window.scroll(0, 0)
     }
@@ -22,7 +21,7 @@ export class ContactPage extends Component {
                     <NavMenuMobile />
                 </div>
 
-                <Contact />
+                <Purchase />
 
                 <div className="Desktop">
                     <FooterDesktop />
@@ -30,9 +29,10 @@ export class ContactPage extends Component {
                 <div className="Mobile">
                     <FooterMobile />
                 </div>
+
             </Fragment>
         )
     }
 }
 
-export default ContactPage
+export default PurchasePage
