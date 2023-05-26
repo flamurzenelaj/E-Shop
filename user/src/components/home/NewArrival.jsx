@@ -5,15 +5,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
+import NewArrivalLoading from "../PlaceHolder/NewArrivalLoading";
 
 function NewArrival() {
   const [ProductData, setProductData] = useState([]);
+  const [isLoading, setIsLoading] = useState("");
+  const [mainDiv, setMainDiv] = useState("d-none");
 
   useEffect(() => {
     axios
       .get(AppURL.ProductListByRemark("/NEW"))
       .then((response) => {
         setProductData(response.data);
+        setIsLoading("d-none");
+        setMainDiv("")
       })
       .catch((error) => {});
   }, []);
@@ -105,6 +110,8 @@ function NewArrival() {
   };
   return (
     <Fragment>
+      <NewArrivalLoading isLoading={isLoading} />
+      <div className={mainDiv}>
       <Container className="text-center" fluid={true}>
         <div className="section-title text-center mb-55">
           <h2>
@@ -125,6 +132,7 @@ function NewArrival() {
           </Slider>
         </Row>
       </Container>
+      </div>
     </Fragment>
   );
 }

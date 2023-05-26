@@ -3,15 +3,20 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CategoryLoading from "../PlaceHolder/CategoryLoading";
 
 function Categories() {
   const [MenuData, setMenuData] = useState([]);
+  const [isLoading, setIsLoading] = useState("");
+  const [mainDiv, setMainDiv] = useState("d-none");
 
   useEffect(() => {
     axios
       .get(AppURL.AllCategoryDetails)
       .then((response) => {
         setMenuData(response.data);
+        setIsLoading("d-none");
+        setMainDiv("")
       })
       .catch((error) => {});
   }, []);
@@ -37,6 +42,8 @@ function Categories() {
   });
   return (
     <Fragment>
+      <CategoryLoading isLoading={isLoading} />
+      <div className={mainDiv}>
       <Container className="text-center" fluid={true}>
         <div className="section-title text-center mb-55">
           <h2>CATEGORIES</h2>
@@ -47,6 +54,7 @@ function Categories() {
          {MyView}
         </Row>
       </Container>
+      </div>
     </Fragment>
   );
 }

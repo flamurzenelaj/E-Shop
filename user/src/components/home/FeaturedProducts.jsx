@@ -3,14 +3,20 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AppURL from "../../api/AppURL";
+import SliderLoading from "../PlaceHolder/SliderLoading";
+import FeaturedLoading from "../PlaceHolder/FeaturedLoading";
 function FeaturedProducts() {
   const [ProductData, setProductData] = useState([]);
+  const [isLoading, setIsLoading] = useState("");
+  const [mainDiv, setMainDiv] = useState("d-none");
 
   useEffect(() => {
     axios
       .get(AppURL.ProductListByRemark("/featured"))
       .then((response) => {
         setProductData(response.data);
+        setIsLoading("d-none");
+        setMainDiv("")
       })
       .catch((error) => {});
   }, []);
@@ -59,14 +65,19 @@ function FeaturedProducts() {
   });
   return (
     <Fragment>
+      <FeaturedLoading isLoading={isLoading} />
+      <div className={mainDiv}>
       <Container className="text-center" fluid={true}>
         <div className="section-title text-center mb-55">
           <h2>FEATURED PRODUCT</h2>
           <p>Some of our Exclusive Collection, You may like.</p>
         </div>
-
+        <SliderLoading isLoading={isLoading} />
+        <div className={mainDiv}>
         <Row>{MyView}</Row>
+        </div>
       </Container>
+      </div>
     </Fragment>
   );
 }

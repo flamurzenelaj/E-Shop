@@ -2,16 +2,21 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
-import { Link } from "react-router-dom";
+import CollectionLoading from "../PlaceHolder/CollectionLoading";
 
 function Collection() {
   const [ProductData, setProductData] = useState([]);
+  const [isLoading, setIsLoading] = useState("");
+  const [mainDiv, setMainDiv] = useState("d-none");
+
 
   useEffect(() => {
     axios
       .get(AppURL.ProductListByRemark("/COLLECTION"))
       .then((response) => {
         setProductData(response.data);
+        setIsLoading("d-none");
+        setMainDiv("")
       })
       .catch((error) => {});
   }, []);
@@ -52,6 +57,8 @@ function Collection() {
   });
   return (
     <Fragment>
+      <CollectionLoading isLoading={isLoading} />
+      <div className={mainDiv}>
       <Container className="text-center" fluid={true}>
         <div className="section-title text-center mb-55">
           <h2>PRODUCT COLLECTION</h2>
@@ -59,6 +66,7 @@ function Collection() {
         </div>
         <Row>{MyView}</Row>
       </Container>
+      </div>
     </Fragment>
   );
 }

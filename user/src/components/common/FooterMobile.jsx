@@ -43,7 +43,7 @@ function FooterMobile() {
         <Container fluid={true} className="text-center m-0 pt-3 pb-1 bg-dark">
           <Container>
             <Row>
-              <h6 className="text-white">@ Copyright 2023 by Flamur Zenelaj, All Rights Reserved</h6>
+              <h6 className="text-white">@ Copyright 2023 by @EasyShop, All Rights Reserved</h6>
             </Row>
           </Container>
         </Container>
