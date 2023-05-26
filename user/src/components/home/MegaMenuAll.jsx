@@ -1,187 +1,66 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
+import AppURL from '../../api/AppURL';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-export class MegaMenuAll extends Component {
+function MegaMenuAll() {
+  const [MenuData, setMenuData] = useState([]);
 
-    constructor() {
-        super();
-        this.MegaMenu = this.MegaMenu.bind(this);
+  useEffect(() => {
+    axios
+      .get(AppURL.AllCategoryDetails)
+      .then((response) => {
+        setMenuData(response.data);
+      })
+      .catch((error) => {});
+  }, []);
+
+  const MenuItemClick = (e) => {
+    e.target.classList.toggle("active");
+    var panel = e.target.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
     }
-
-    componentDidMount() {
-        this.MegaMenu();
-    }
-
-    MegaMenu() {
-        var acc = document.getElementsByClassName("accordionMobile");
-        var accNum = acc.length;
-        var i;
-        for (i = 0; i < accNum; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active")
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
+  };
+  const CatList = MenuData;
+  const MyView = CatList.map((catlist, i) => {
+    return (
+      <div key={i.toString()}>
+        <button onClick={MenuItemClick} className="accordionAll">
+          <img
+            src={catlist.category_image}
+            alt="1"
+            className="accordionMenuIconAll"
+          />
+          &nbsp; {catlist.category_name}
+        </button>
+        <div className="panelAll">
+          <ul>
+            {
+            (catlist.subcategory_name).map((SubList, i) => {
+              return (
+                <li>
+                  <Link to={"productsubcategory/"+catlist.category_name+"/"+SubList.subcategory_name} className="accordionItem">
+                    {SubList.subcategory_name}
+                  </Link>
+                </li>
+              );
             })
-        }
-    }
-
-    render() {
-        return (
-            <div className="accordionMenuDivAll">
-                <div className="accordionoMenuDivInsideAll">
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-                    <button className="accordionAll">
-                        <img className="accordionMenuIconAll" src="" /> &nbsp; Men's Clothing
-                    </button>
-
-                    <div className="panelAll">
-                        <ul>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 1</a></li>
-                            <li><a href="#" className="accordionItemAll">Mans Tshirt 2</a></li>
-                        </ul>
-                    </div>
-
-
-
-                </div>
-            </div>
-        )
-    }
+            }
+          </ul>
+        </div>
+      </div>
+    );
+  });
+  return (
+    <div className="accordionMenuDivAll">
+     <div className="accordionMenuDivInsideAll">
+      {MyView}
+     </div>
+  </div>
+  )
 }
 
 export default MegaMenuAll

@@ -1,75 +1,51 @@
-import React, { Component, Fragment } from 'react'
-import { Button, Col, Container, Navbar, Row } from 'react-bootstrap'
-import Logo from '../../assets/images/easyshop.png';
-import { Link } from 'react-router-dom';
-import MegaMenuMobile from '../home/MegaMenuMobile';
+import React, { Fragment, useState, useEffect, useRef } from "react";
+import { Button, Col, Container, Navbar } from "react-bootstrap";
+import Logo from "../../assets/images/logo.png";
+import { Link } from "react-router-dom";
+import MegaMenuMobile from "../home/MegaMenuMobile";
 
-export class NavMenuMobile extends Component {
+function NavMenuMobile() {
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const containerRef = useRef(null);
 
-    constructor() {
-        super();
-        this.state = {
-            SideNavState: "sideNavClose",
-            ContentOverState: "ContentOverlayClose"
-        }
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (containerRef.current && !containerRef.current.contains(event.target) && event.target.tagName !== "BUTTON") {
+        setMobileMenu(false);
+      }
     }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [containerRef]);
 
-    MenuBarClickHandler = () => {
-        this.SideNavOpenClose();
-    }
+  function handleMobileMenuToggle() {
+    setMobileMenu(!mobileMenu);
+  }
 
-    ContentOverlayClickHandler = () => {
-        this.SideNavOpenClose();
-    }
-
-    SideNavOpenClose = () => {
-        let SideNavState = this.state.SideNavState;
-        let ContentOverState = this.state.ContentOverState;
-        if (SideNavState === "sideNavOpen") {
-            this.setState({ SideNavState: "sideNavClose", ContentOverState: "ContentOverlayClose" })
-        } else {
-            this.setState({ SideNavState: "sideNavOpen", ContentOverState: "ContentOverlayOpen" })
-        }
-    }
-
-    render() {
-        return (
-            <Fragment>
-
-                <div className="TopSectionDown">
-
-                    <Container fluid={"true"} className="fixed-top shadow-sm p-2 mb-0 bg-white" >
-                        <Row>
-                            <Col lg={4} md={4} sm={12} xs={12}>
-
-                                <Button onClick={this.MenuBarClickHandler} className="btn"><i className="fa fa-bars"> </i>
-                                </Button>
-
-                                <Link to="/"><img className="nav-logo" src={Logo} /></Link>
-
-                                <Button className="cart-btn"><i className="fa fa-shopping-cart"> 3 Items</i>
-                                </Button>
-                            </Col>
-
-
-                        </Row>
-                    </Container>
-
-
-                    <div className={this.state.SideNavState}>
-                        <MegaMenuMobile />
-                    </div>
-
-
-                    <div onClick={this.ContentOverlayClickHandler} className={this.state.ContentOverState}>
-
-                    </div>
-
-                </div>
-
-            </Fragment >
-        )
-    }
+  return (
+    <Fragment>
+      <div className="TopSectionDown">
+        <Container fluid={true} className="fixed-top shadow-sm p-2 mb-0 navbar">
+          <Col lg={4} md={4} sm={12} xs={12} className="nav-mobile" >
+          <Button onClick={handleMobileMenuToggle} style={{backgroundColor: "#280245"}} className="btn" >
+              <i className={`fa ${mobileMenu ? "fa-times" : "fa-bars"}`} style={{fontSize: "1.6rem"}}></i>
+            </Button>
+            <Link to="/">
+              <img className="nav-logo" src={Logo} alt="1" />
+            </Link>
+            <Button className="cart-btn">
+                <i className="fa fa-shopping-cart"></i> 3 Items
+            </Button>
+          </Col>
+        </Container>
+        <div ref={containerRef} className={mobileMenu ? "sideNavOpen" : "sideNavClose"}>
+          <MegaMenuMobile />
+        </div>
+      </div>
+    </Fragment>
+  );
 }
 
-export default NavMenuMobile
+export default NavMenuMobile;
