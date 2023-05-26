@@ -25,7 +25,7 @@ function Categories() {
   const MyView = CatList.map((CatList, i) => {
     return (
       <Col key={i.toString()} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-        <Link to={"/productcategory/" + CatList.category_name}>
+        <Link className="text-link" to={"/productcategory/" + CatList.category_name}>
         <Card className="h-100 w-100 text-center">
           <Card.Body>
             <img
