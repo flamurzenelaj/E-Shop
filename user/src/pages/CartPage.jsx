@@ -3,9 +3,9 @@ import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
 import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
-import Privacy from '../components/others/Privacy';
+import Cart from '../components/Cart/Cart';
 
-function PrivacyPage() {
+function CartPage() {
     useEffect(()=>{
         window.scroll(0,0);
       },[])
@@ -18,7 +18,7 @@ function PrivacyPage() {
       <NavMenuMobile />
     </div>
     
-    <Privacy />
+    <Cart />
 
     <div className="Desktop">
       <FooterDesktop />
@@ -30,4 +30,4 @@ function PrivacyPage() {
   )
 }
 
-export default PrivacyPage
+export default CartPage
