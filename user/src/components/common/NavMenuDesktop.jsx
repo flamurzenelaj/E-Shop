@@ -2,11 +2,17 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Navbar } from "react-bootstrap";
 import Logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import MegaMenuAll from "../home/MegaMenuAll";
 
 function NavMenuDesktop() {
+  const navigate = useNavigate();
   const [mobileMenu, setMobileMenu] = useState(false);
   const containerRef = useRef(null);
+  const [searchKey, setSearchKey] = useState("");
+  const [searchRedirectedStatus, setSearchRedirectedStatus] = useState(false);
+
+
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -22,6 +28,17 @@ function NavMenuDesktop() {
 
   function handleMobileMenuToggle() {
     setMobileMenu(!mobileMenu);
+  }
+
+  function SearchOnChange(event){
+    let SearchKey = event.target.value;
+    setSearchKey(SearchKey);
+  }
+
+  function SearchOnClick(){
+    if(searchKey.length>2){
+      navigate(`/productbysearch/${searchKey}`)
+    }
   }
 
   return (
@@ -42,14 +59,16 @@ function NavMenuDesktop() {
                 <img className="nav-logo" src={Logo} alt="1" />
               </Link>
             </Col>
+
             <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
-              <div className="input-group w-100 search">
-                <input type="text" className="form-control" />
-                <Button type="button" className="btn site-btn">
+              <div className="input-group w-100 ">
+                <input onChange={SearchOnChange} type="text" className="form-control" />
+                <Button onClick={SearchOnClick} type="button" className="btn site-btn">
                   <i className="fa fa-search"></i>
                 </Button>
               </div>
             </Col>
+
             <Col className="p-1 mt-1 nav-right" lg={5} md={5} sm={12} xs={12}>
 
             <Link to="/favourite" className="btn">
