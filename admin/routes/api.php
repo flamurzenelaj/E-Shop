@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\ProductDetailsController;
@@ -23,3 +24,5 @@ Route::get('/productlistbysubcategory/{category}/{subcategory}', [ProductListCon
 
 
 Route::get('/productdetails/{id}', [ProductDetailsController::class, 'ProductDetails']);
+Route::get('/notification', [NotificationController::class, 'NotificationHistory']);
+

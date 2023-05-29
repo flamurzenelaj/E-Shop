@@ -1,107 +1,79 @@
-import React, { Component, Fragment, useState } from 'react'
-import { Container,Row,Col, Card,Button,Modal } from 'react-bootstrap'
+import React, { Component, Fragment, useEffect, useState } from "react";
+import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
 function Notification() {
-    const[show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const [NotificationData, setNotificationData] = useState([]);
+  const [NotificationMsg, setNotificationMsg] = useState("");
+  const [NotificationTitle, setNotificationTitle] = useState("");
+  const [NotificationDate, setNotificationDate] = useState("");
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const [isLoading, setIsLoading] = useState("");
+  const [mainDiv, setMainDiv] = useState("d-none");
 
+  const handleClose = () => setShow(false);
+  const handleShow = (event) => {
+    setShow(true);
+    let Nmsg = event.target.getAttribute("data-message");
+    let Ntitle = event.target.getAttribute("data-title");
+    let Ndate = event.target.getAttribute("data-date");
+    setNotificationMsg(Nmsg);
+    setNotificationTitle(Ntitle);
+    setNotificationDate(Ndate);
+  }
+
+  useEffect(() => {
+    axios
+      .get(AppURL.NotificationHistory)
+      .then((response) => {
+        setNotificationData(response.data);
+        setIsLoading("d-none");
+        setMainDiv("");
+      })
+      .catch((error) => {});
+  }, []);
+
+  const NotificationList = NotificationData;
+  const MyView = NotificationList.map((NotificationList, i) => {
+    return (
+      <Col className=" p-1 " md={6} lg={6} sm={12} xs={12}>
+        <Card onClick={handleShow} className="notification-card">
+          <Card.Body>
+            <h6> {NotificationList.title}</h6>
+            <p className="py-1  px-0 text-primary m-0">
+              <i className="fa  fa-bell"></i> Date: {NotificationList.date} | Status: Unread
+            </p>
+            <Button data-title={NotificationList.title} data-date={NotificationList.date} data-message={NotificationList.message} className="btn btn-danger">Details</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+    );
+  });
 
   return (
     <Fragment>
       <Container className="TopSection">
         <Row>
-          <Col className=" p-1 " md={6} lg={6} sm={12} xs={12}>
-            <Card onClick={handleShow} className="notification-card">
-              <Card.Body>
-                <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                <p className="py-1  px-0 text-primary m-0">
-                  <i className="fa  fa-bell"></i> Date: 22/12/2010 | Status:
-                  Unread
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className=" p-1 " md={6} lg={6} sm={12} xs={12}>
-            <Card onClick={handleShow} className="notification-card">
-              <Card.Body>
-                <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                <p className="py-1   px-0 text-primary m-0">
-                  <i className="fa  fa-bell"></i> Date: 22/12/2010 | Status:
-                  Unread
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-            <Card className="notification-card">
-              <Card.Body>
-                <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                <p className="py-1  px-0 text-success m-0">
-                  <i className="fa  fa-bell"></i> Date: 22/12/2010 | Status:
-                  Read
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-            <Card className="notification-card">
-              <Card.Body>
-                <h5> Lorem Ipsum is simply dummy text of the printing</h5>
-                <p className="py-1  px-0 text-success m-0">
-                  <i className="fa fa-bell"></i> Date: 22/12/2010 | Status: Read
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-            <Card className="notification-card">
-              <Card.Body>
-                <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                <p className="py-1  px-0 text-success m-0">
-                  <i className="fa  fa-bell"></i> Date: 22/12/2010 | Status:
-                  Read
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-1" md={6} lg={6} sm={12} xs={12}>
-            <Card className="notification-card">
-              <Card.Body>
-                <h6> Lorem Ipsum is simply dummy text of the printing</h6>
-                <p className="py-1 px-0 text-success m-0">
-                  <i className="fa  fa-bell"></i> Date: 22/12/2010 | Status:
-                  Read
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
+          {MyView}
         </Row>
       </Container>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <h6>
-            <i className="fa fa-bell"></i> Date:11/05/2021
+            <i className="fa fa-bell"></i> Date:{NotificationDate}
           </h6>
         </Modal.Header>
         <Modal.Body>
-          <h6>Woohoo, you're reading this text in a modal!</h6>
+          <h6>{NotificationTitle}</h6>
           <p>
-            Each course has been hand-tailored to teach a specific skill. I hope
-            you agree! Whether you’re trying to learn a new skill from scratch
-            or want to refresh your memory on something you’ve learned in the
-            past, you’ve come to the right place.
+           {NotificationMsg}
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose} >
+          <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
