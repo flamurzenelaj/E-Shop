@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
 import { Col, Container, Form, Row, Button } from "react-bootstrap";
-import Login from "../../assets/images/login.png";
 import { Link } from "react-router-dom";
+import Login from "../../assets/images/login.png";
 
-function UserLogin() {
+
+function Register() {
   return (
     <Fragment>
       <Container>
@@ -24,7 +25,13 @@ function UserLogin() {
                 xs={12}
               >
                 <Form className="onboardForm">
-                  <h4 className="section-title-login">User Sign In</h4>
+                  <h4 className="section-title-login">User Register</h4>
+
+                  <input
+                    className="form-control m-2"
+                    type="text"
+                    placeholder="Enter Your Name"
+                  />
 
                   <input
                     className="form-control m-2"
@@ -37,19 +44,25 @@ function UserLogin() {
                     type="text"
                     placeholder="Enter Your Password"
                   />
+
+                  <input
+                    className="form-control m-2"
+                    type="text"
+                    placeholder="Confirm Your Password"
+                  />
                   <Button className="btn btn-block m-2 site-btn-login">
                     {" "}
-                    Login{" "}
+                    Sign Up{" "}
                   </Button>
                   <br /><br />
                   <hr />
                   <p> <b> Forget My Password?</b> <b> <Link to="/forget">Forget Password</Link> </b></p>
 
-                  <p> <b> Don't Have An Account?</b> <b><Link to="/register">Register</Link></b> </p>
+                  <p> <b> Already Have An Account?</b> <b><Link to="/login">Login</Link></b> </p>
                 </Form>
               </Col>
               <Col className="p-0 Desktop m-0" md={6} lg={6} sm={6} xs={6}>
-                <img className="onboardBanner" src={Login} alt="1" />
+              <img className="onboardBanner" src={Login} alt="1" />
               </Col>
             </Row>
           </Col>
@@ -59,4 +72,4 @@ function UserLogin() {
   );
 }
 
-export default UserLogin;
+export default Register;
