@@ -42,7 +42,7 @@ function MegaMenuAll() {
             (catlist.subcategory_name).map((SubList, i) => {
               return (
                 <li>
-                  <Link to={"productsubcategory/"+catlist.category_name+"/"+SubList.subcategory_name} className="accordionItem">
+                  <Link to={"/productsubcategory/"+catlist.category_name+"/"+SubList.subcategory_name} className="accordionItem">
                     {SubList.subcategory_name}
                   </Link>
                 </li>

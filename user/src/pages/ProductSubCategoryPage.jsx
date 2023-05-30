@@ -23,7 +23,7 @@ function ProductSubCategoryPage() {
       })
       .catch((error) => {});
 
-  }, []);
+  },[category, subcategory]);
   return (
     <Fragment>
     <div className="Desktop">

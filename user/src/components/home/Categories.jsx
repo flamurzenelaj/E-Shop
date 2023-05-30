@@ -19,7 +19,7 @@ function Categories() {
         setMainDiv("")
       })
       .catch((error) => {});
-  }, []);
+  },[]);
 
   const CatList = MenuData;
   const MyView = CatList.map((CatList, i) => {
