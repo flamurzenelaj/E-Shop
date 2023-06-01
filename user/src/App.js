@@ -4,7 +4,7 @@ import AppRoute from './routes/AppRoute'
 
 function App() {
   return (
-    <Fragment>
+    <Fragment >
       <BrowserRouter>
       <AppRoute />
       </BrowserRouter>

@@ -1,124 +1,94 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
-function SuggestedProducts() {
-  return (
-    <Fragment>
-      <Container className="text-center" fluid={true}>
-        <div className="section-title text-center mb-55">
-          <h2>YOU MAY ALSO LIKE</h2>
-          <p>Some of our Exclusive Collection, You may like.</p>
-        </div>
+function SuggestedProducts({ subcategory }) {
+  const [ProductData, setProductData] = useState([]);
+  useEffect(() => {
+    window.scroll(0, 0);
+    axios
+      .get(AppURL.SimilarProduct(subcategory))
+      .then((response) => {
+        setProductData(response.data);
+      })
+      .catch((error) => {});
+  }, []);
 
-        <Row>
+  if (ProductData.length > 0) {
+    const MyView = ProductData.map((ProductList, i) => {
+      if (ProductList.special_price == "na") {
+        return (
           <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Link to="/productdetails">
+            <Link
+              className="text-link"
+              to={"/productdetails/" + ProductList.id}
+            >
               <Card className="image-box card">
-                <img
-                  className="center"
-                  src="https://rukminim1.flixcart.com/image/416/416/kfoapow0/cases-covers/back-cover/k/4/f/power-hybrarma61-original-imafw2zq47gpzrnk.jpeg?q=70"
-                  alt=""
-                />
+                <img className="center" src={ProductList.image} alt="" />
 
                 <Card.Body>
-                  <p className="product-name-on-card">
-                    Power Back Cover for Samsung Galaxy A11
+                  <p className="product-name-on-card">{ProductList.title}</p>
+                  <p className="product-price-on-card">
+                    Price : {ProductList.price}
                   </p>
-                  <p className="product-price-on-card">Price : $24</p>
                 </Card.Body>
               </Card>
             </Link>
           </Col>
-
+        );
+      } else {
+        return (
           <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Card className="image-box card">
-              <img
-                className="center"
-                src="https://rukminim1.flixcart.com/image/416/416/kfoapow0/cases-covers/back-cover/k/4/f/power-hybrarma61-original-imafw2zq47gpzrnk.jpeg?q=70"
-                alt=""
-              />
+            <Link
+              className="text-link"
+              to={"/productdetails/" + ProductList.id}
+            >
+              <Card className="image-box card">
+                <img className="center" src={ProductList.image} alt="" />
 
-              <Card.Body>
-                <p className="product-name-on-card">
-                  Power Back Cover for Samsung Galaxy A11
-                </p>
-                <p className="product-price-on-card">Price : $24</p>
-              </Card.Body>
-            </Card>
+                <Card.Body>
+                  <p className="product-name-on-card">{ProductList.title}</p>
+                  <p className="product-price-on-card">
+                    Price :{" "}
+                    <strike className="text-secondary">
+                      ${ProductList.price}
+                    </strike>{" "}
+                    ${ProductList.special_price}
+                  </p>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
+        );
+      }
+    });
+    return (
+      <Fragment>
+        <Container className="text-center" fluid={true}>
+          <div className="section-title text-center mb-55">
+            <h2>YOU MAY ALSO LIKE</h2>
+            <p>Some of our Exclusive Collection, You may like.</p>
+          </div>
 
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Card className="image-box card">
-              <img
-                className="center"
-                src="https://rukminim1.flixcart.com/image/416/416/kfoapow0/cases-covers/back-cover/k/4/f/power-hybrarma61-original-imafw2zq47gpzrnk.jpeg?q=70"
-                alt=""
-              />
+          <Row>{MyView}</Row>
+        </Container>
+      </Fragment>
+    );
+  } else {
+    <Fragment>
+        <Container className="text-center" fluid={true}>
+          <div className="section-title text-center mb-55">
+            <h2>YOU MAY ALSO LIKE</h2>
+            <p>Some of our Exclusive Collection, You may like.</p>
+          </div>
 
-              <Card.Body>
-                <p className="product-name-on-card">
-                  Power Back Cover for Samsung Galaxy A11
-                </p>
-                <p className="product-price-on-card">Price : $24</p>
-              </Card.Body>
-            </Card>
-          </Col>
+        <p>There have no similar product</p>
 
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Card className="image-box card">
-              <img
-                className="center"
-                src="https://rukminim1.flixcart.com/image/416/416/kfoapow0/cases-covers/back-cover/k/4/f/power-hybrarma61-original-imafw2zq47gpzrnk.jpeg?q=70"
-                alt=""
-              />
-
-              <Card.Body>
-                <p className="product-name-on-card">
-                  Power Back Cover for Samsung Galaxy A11
-                </p>
-                <p className="product-price-on-card">Price : $24</p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Card className="image-box card">
-              <img
-                className="center"
-                src="https://rukminim1.flixcart.com/image/416/416/kfoapow0/cases-covers/back-cover/k/4/f/power-hybrarma61-original-imafw2zq47gpzrnk.jpeg?q=70"
-                alt=""
-              />
-
-              <Card.Body>
-                <p className="product-name-on-card">
-                  Power Back Cover for Samsung Galaxy A11
-                </p>
-                <p className="product-price-on-card">Price : $24</p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Card className="image-box card">
-              <img
-                className="center"
-                src="https://rukminim1.flixcart.com/image/416/416/kfoapow0/cases-covers/back-cover/k/4/f/power-hybrarma61-original-imafw2zq47gpzrnk.jpeg?q=70"
-                alt=""
-              />
-
-              <Card.Body>
-                <p className="product-name-on-card">
-                  Power Back Cover for Samsung Galaxy A11
-                </p>
-                <p className="product-price-on-card">Price : $24</p>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </Fragment>
-  );
+        </Container>
+      </Fragment>
+  }
 }
 
 export default SuggestedProducts;

@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('message');
-            $table->string('date');
-            $table->timestamps();
-        });
+        // Schema::create('notifications', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->text('message');
+        //     $table->string('date');
+        //     $table->timestamps();
+        // });
     }
 
     /**

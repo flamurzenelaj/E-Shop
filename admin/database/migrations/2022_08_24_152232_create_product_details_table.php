@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_details', function (Blueprint $table) {
-            $table->id();
-            $table->integer('product_id');
-            $table->string('image_one');
-            $table->string('image_two');
-            $table->string('image_three');
-            $table->string('image_four');
-            $table->string('short_description');
-            $table->text('long_description');
-            $table->string('color');
-            $table->string('size');
-            $table->timestamps();
-        });
+        // Schema::create('product_details', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->integer('product_id');
+        //     $table->string('image_one');
+        //     $table->string('image_two');
+        //     $table->string('image_three');
+        //     $table->string('image_four');
+        //     $table->string('short_description');
+        //     $table->text('long_description');
+        //     $table->string('color');
+        //     $table->string('size');
+        //     $table->timestamps();
+        // });
     }
 
     /**

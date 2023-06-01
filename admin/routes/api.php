@@ -11,8 +11,7 @@ use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
-
-
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgetController;
 use App\Http\Controllers\User\ResetController;
@@ -78,6 +77,8 @@ Route::get('/notification',[NotificationController::class, 'NotificationHistory'
 // Search Route
 Route::get('/search/{key}',[ProductListController::class, 'ProductBySearch']);
 
-Route::get('/similar/{subcategory}',[ProductListController::class, 'SimilarProduct'])->name('amenities.amenity');
+Route::get('/similar/{subcategory}',[ProductListController::class, 'SimilarProduct']);
+
+Route::get('/reviewlist/{id}',[ReviewController::class, 'ReviewList']);
 
 

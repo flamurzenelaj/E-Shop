@@ -18,13 +18,11 @@ function ForgetPassword() {
     }
 
     axios.post(AppURL.UserForgetPassword,data).then(response =>{
-      setMessage("Reset Password link has been sent to your email")
-      toast.success(message,{
+      toast.success(response.data.message,{
         position: "top-right"
       })
     }).catch(error=>{
-        setMessage("Invalid Email")
-        toast.error(message,{
+        toast.error(error.response.data.message,{
           position: "top-right"
         })
     })

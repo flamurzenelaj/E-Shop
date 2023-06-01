@@ -13,8 +13,7 @@ function FooterDesktop() {
             <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
               <h5 className="footer-menu-title">OFFICE ADDRESS</h5>
               <p>
-                121 wakdmmc kmwam ma kmkam ma ma mcwakmkcwa m mcamcskmcof v m c
-                jeanc awn wa <br /> Email: awdkwxk@gmail.com
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, inventore odit? Voluptatum ipsa sapiente recusandae? <br /> Email: eshop@gmail.com
               </p>
               <h5 className="footer-menu-title">SOCIAL LINK</h5>
               <a href="">
@@ -74,7 +73,7 @@ function FooterDesktop() {
         <Container fluid={true} className="text-center m-0 pt-3 pb-1 bg-dark">
           <Container>
             <Row>
-              <h6 className="text-white">@ Copyright 2023 by Flamur Zenelaj, All Rights Reserved</h6>
+              <h6 className="text-white"> @Copyright 2023 by E-Shop, All Rights Reserved</h6>
             </Row>
           </Container>
         </Container>

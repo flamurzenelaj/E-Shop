@@ -14,8 +14,6 @@ function ResetPassword() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPassword_confirmation] = useState('');
-  const [message, setMessage] = useState('');
-
 
   const formSubmit = (e) =>{
     e.preventDefault();
@@ -27,15 +25,13 @@ function ResetPassword() {
     }
 
     axios.post(AppURL.UserResetPassword,data).then(response =>{
-      setMessage(response.data.message)
-      toast.success(message,{
+      toast.success(response.data.message,{
         position: "top-right"
       })
       document.getElementById("formreset").reset();
     
     }).catch(error=>{
-      setMessage(error.response.data.message);
-      toast.error(message,{
+      toast.error(error.response.data.message,{
         position: "top-right"
       })
     })

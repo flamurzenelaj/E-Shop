@@ -32,8 +32,13 @@ class AppURL {
   static UserForgetPassword = this.BaseURL+"/forgetpassword"
   static UserResetPassword = this.BaseURL+"/resetpassword"
 
+  static SimilarProduct(code){
+    return this.BaseURL+"/similar/"+code;
+  }
 
-
+  static ReviewList(code){
+    return this.BaseURL+"/reviewlist/"+code;
+  }
 
 
 }
