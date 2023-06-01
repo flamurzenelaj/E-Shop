@@ -5,7 +5,7 @@ import NavMenuMobile from "../components/common/NavMenuMobile";
 import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import Profile from '../components/common/Profile';
-function ProfilePage() {
+function ProfilePage({user}) {
     useEffect(()=>{
         window.scroll(0,0);
       },[])
@@ -18,7 +18,7 @@ function ProfilePage() {
       <NavMenuMobile />
     </div>
 
-    <Profile />
+    <Profile user={user} />
 
     <div className="Desktop">
       <FooterDesktop />

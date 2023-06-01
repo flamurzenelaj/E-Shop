@@ -8,16 +8,18 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('site_infos', function (Blueprint $table) {
             $table->id();
-            $table->text('about',50000);
-            $table->text('refund',50000);
-            $table->text('purchase_guide',50000);
-            $table->text('privacy',50000);
-            $table->text('address',50000);
+            $table->text('about', 5000);
+            $table->text('refund', 5000);
+            $table->text('purchase_guide', 5000);
+            $table->text('privacy', 5000);
+            $table->string('address', 5000);
             $table->string('android_app_link');
             $table->string('ios_app_link');
             $table->string('facebook_link');
@@ -30,8 +32,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('site_infos');
     }

@@ -6,7 +6,7 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import Register from '../components/common/Register';
 
-function RegisterPage() {
+function RegisterPage({user, setUser}) {
     useEffect(()=>{
         window.scroll(0,0);
       },[])
@@ -19,7 +19,7 @@ function RegisterPage() {
       <NavMenuMobile />
     </div>
 
-    <Register />    
+    <Register user={user} setUser={setUser} />    
 
     <div className="Desktop">
       <FooterDesktop />

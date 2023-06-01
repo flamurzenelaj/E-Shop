@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router'
 import HomePage from '../pages/HomePage'
 import UserLoginPage from '../pages/UserLoginPage'
@@ -18,17 +18,31 @@ import RegisterPage from '../pages/RegisterPage'
 import ForgetPasswordPage from '../pages/ForgetPasswordPage'
 import ResetPasswordPage from '../pages/ResetPasswordPage'
 import ProfilePage from '../pages/ProfilePage'
+import axios from 'axios'
+import AppURL from '../api/AppURL'
+import NavMenuDesktop from '../components/common/NavMenuDesktop'
 
 function AppRoute() {
+
+  const [user, setUser] = useState({});
+
+  useEffect(()=>{
+    axios.get(AppURL.UserData).then(response=>{
+      setUser(response.data);
+    }).catch(error=>{
+
+    })
+    },[]);
   return (
     <Fragment>
+      <NavMenuDesktop user={user} setUser={setUser} />
         <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/login' element={<UserLoginPage />} />
-            <Route path='/register' element={<RegisterPage />} />
+            <Route path='/login'  element={<UserLoginPage  user={user} setUser={setUser} />} />
+            <Route path='/register' element={<RegisterPage user={user} setUser={setUser} />} />
             <Route path='/forget' element={<ForgetPasswordPage />} />
             <Route path='/reset/:id' element={<ResetPasswordPage />} />
-            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/profile'  element={<ProfilePage user={user} setUser={setUser} />} />
             <Route path='/contact' element={<ContactPage />} />
             <Route path='/purchase' element={<PurchasePage />} />
             <Route path='/privacy' element={<PrivacyPage />} />

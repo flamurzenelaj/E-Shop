@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Container, Row, Col, Form, Button, Breadcrumb } from "react-bootstrap";
 import ReactDOM  from "react-dom";
 import Product1 from "../../assets/images/product/product1.png";
@@ -6,13 +6,23 @@ import Product2 from "../../assets/images/product/product2.png";
 import Product3 from "../../assets/images/product/product3.png";
 import Product4 from "../../assets/images/product/product4.png";
 import { Link } from "react-router-dom";
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+import InnerImageZoom from "react-inner-image-zoom";
 
 function ProductDetails({ data }) {
+
+  const [previewImg, setPreviewImg] = useState("0")
+
   let title = data["productList"][0]["title"];
   let brand = data["productList"][0]["brand"];
   let category = data["productList"][0]["category"];
   let subcategory = data["productList"][0]["subcategory"];
   let image = data["productList"][0]["image"];
+
+  if(previewImg==="0"){
+    setPreviewImg(image);
+  }
+
   let price = data["productList"][0]["price"];
   let product_code = data["productList"][0]["product_code"];
   let remark = data["productList"][0]["remark"];
@@ -32,8 +42,8 @@ function ProductDetails({ data }) {
 
   const imgOnClick = (event) =>{
     let imgSrc = event.target.getAttribute('src');
-    let previewImg = document.getElementById('previewImg');
-    ReactDOM.findDOMNode(previewImg).setAttribute('src', imgSrc);
+    setPreviewImg(imgSrc);    
+    
   }
 
   function PriceOption(price, special_price){
@@ -104,7 +114,7 @@ function ProductDetails({ data }) {
           >
             <Row>
               <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                <img id="previewImg" className="bigimage" src={image_one} />
+                <InnerImageZoom className="detailimage" zoomScale={1.8} zoomType={"hover"} src={previewImg} zoomSrc={previewImg} />
                 <Container className="my-3">
                   <Row>
                     <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>

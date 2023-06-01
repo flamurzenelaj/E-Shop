@@ -33,5 +33,11 @@ class ProductListController extends Controller
         return $productlist;
     }
 
+    public function SimilarProduct(Request $request){
+        $subcategory = $request->subcategory;
+        $productlist = ProductList::where('subcategory',$subcategory)->orderBy('id','desc')->limit(6)->get();
+        return $productlist;
+    }
+
     
 }
