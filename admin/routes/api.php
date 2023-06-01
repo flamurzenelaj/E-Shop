@@ -78,5 +78,6 @@ Route::get('/notification',[NotificationController::class, 'NotificationHistory'
 // Search Route
 Route::get('/search/{key}',[ProductListController::class, 'ProductBySearch']);
 
+Route::get('/similar/{subcategory}',[ProductListController::class, 'SimilarProduct'])->name('amenities.amenity');
 
 
