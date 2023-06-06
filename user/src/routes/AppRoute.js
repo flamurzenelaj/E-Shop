@@ -21,6 +21,7 @@ import ProfilePage from '../pages/ProfilePage'
 import axios from 'axios'
 import AppURL from '../api/AppURL'
 import NavMenuDesktop from '../components/common/NavMenuDesktop'
+import OrderListPage from '../pages/OrderListPage'
 
 function AppRoute() {
 
@@ -50,11 +51,12 @@ function AppRoute() {
             <Route path='/productdetails/:code' element={<ProductDetailsPage user={user} />} />
             <Route path='/notification' element={<NotificationPage />} />
             <Route path='/favourite' element={<FavoritePage user={user} />} />
-            <Route path='/cart' element={<CartPage />} />
+            <Route path='/cart' element={<CartPage user={user} />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/productcategory/:category' element={<ProductCategoryPage />} />
             <Route path='/productsubcategory/:category/:subcategory' element={<ProductSubCategoryPage />} />
             <Route path='/productbysearch/:searchKey' element={<SearchPage />} />
+            <Route path='/orderlist' element={<OrderListPage />} />
         </Routes>
     </Fragment>
   )

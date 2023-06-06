@@ -17,6 +17,7 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgetController;
 use App\Http\Controllers\User\ResetController;
 use App\Http\Controllers\User\UserController;
+use App\Models\ProductCart;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -91,3 +92,13 @@ Route::get('/favourite/{product_code}/{email}',[FavouriteController::class, 'Add
 Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList']);
 
 Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class, 'FavouriteRemove']);
+
+Route::get('/cartlist/{email}',[ProductCartController::class, 'CartList']);
+
+Route::get('/removecartlist/{id}',[ProductCartController::class, 'RemoveCartList']);
+
+Route::get('/cartitemplus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemPlus']);
+
+Route::get('/cartitemminus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemMinus']);
+
+Route::post('/cartorder',[ProductCartController::class, 'CartOrder']);
