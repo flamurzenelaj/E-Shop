@@ -11,7 +11,7 @@ import AppURL from "../api/AppURL";
 import axios from "axios";
 import SliderLoading from "../components/PlaceHolder/SliderLoading";
 
-function ProductDetailsPage() {
+function ProductDetailsPage({user}) {
   const [ProductData, setProductData] = useState([]);
   const { code } = useParams();
 
@@ -59,7 +59,7 @@ function ProductDetailsPage() {
           <NavMenuMobile />
         </div>
 
-        <ProductDetails data={ProductData} />
+        <ProductDetails data={ProductData} user={user} />
         <SuggestedProducts />
 
         <div className="Desktop">

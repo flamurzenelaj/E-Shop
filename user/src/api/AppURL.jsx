@@ -40,6 +40,12 @@ class AppURL {
     return this.BaseURL+"/reviewlist/"+code;
   }
 
+  static addToCart = this.BaseURL+"/addtocart"
+
+  static CartCount(product_code){
+    return this.BaseURL+"/cartcount/"+product_code;
+  } 
+
 
 }
 

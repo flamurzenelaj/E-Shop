@@ -47,7 +47,7 @@ function AppRoute() {
             <Route path='/purchase' element={<PurchasePage />} />
             <Route path='/privacy' element={<PrivacyPage />} />
             <Route path='/refund' element={<RefundPage />} />
-            <Route path='/productdetails/:code' element={<ProductDetailsPage />} />
+            <Route path='/productdetails/:code' element={<ProductDetailsPage user={user} />} />
             <Route path='/notification' element={<NotificationPage />} />
             <Route path='/favourite' element={<FavoritePage />} />
             <Route path='/cart' element={<CartPage />} />

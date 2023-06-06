@@ -5,10 +5,21 @@ import { Link } from "react-router-dom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import InnerImageZoom from "react-inner-image-zoom";
 import ReviewList from "./ReviewList";
+import cogoToast from "cogo-toast";
+import axios from "axios";
+import AppURL from "../../api/AppURL";
 
-function ProductDetails({ data }) {
+function ProductDetails({ data, user }) {
 
   const [previewImg, setPreviewImg] = useState("0")
+  const [isSize, setIsSize] = useState(null)
+  const [isColor, setIsColor] = useState(null)
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [productCode, setProductCode] = useState(null);
+  const [AddToCart, setAddToCart] = useState("Add To Cart");
+  
 
   let title = data["productList"][0]["title"];
   let brand = data["productList"][0]["brand"];
@@ -30,8 +41,8 @@ function ProductDetails({ data }) {
   let image_two = data["productDetails"][0]["image_two"];
   let image_three = data["productDetails"][0]["image_three"];
   let image_four = data["productDetails"][0]["image_four"];
-  let color = data["productDetails"][0]["color"];
-  let size = data["productDetails"][0]["size"];
+  let productColor  = data["productDetails"][0]["color"];
+  let productSize  = data["productDetails"][0]["size"];
   let product_id = data["productDetails"][0]["product_id"];
   let short_description = data["productDetails"][0]["short_description"];
   let long_description = data["productDetails"][0]["long_description"];
@@ -39,8 +50,71 @@ function ProductDetails({ data }) {
 
   const imgOnClick = (event) =>{
     let imgSrc = event.target.getAttribute('src');
-    setPreviewImg(imgSrc);    
-    
+    setPreviewImg(imgSrc);     
+  }
+
+  const addToCart=()=>{
+
+      let IsSize = isSize;
+      let IsColor = isColor;
+      let Color = color;
+      let Size = size;
+      let Quantity = quantity;
+      let ProductCode = product_code;
+      let Email = user.email;
+
+      if(IsColor==="YES" && Color.length===0){
+        cogoToast.error('Please Select Color', {position:'top-right'});
+      }else if(productSize!=="na" && Size.length===0){
+        cogoToast.error('Please Select Size', {position:'top-right'});
+      }else if(Quantity.length===0){
+        cogoToast.error('Please Select Quantity', {position:'top-right'});
+      }else if(!localStorage.getItem('token')){
+        cogoToast.error('Please You Have to Login First', {position:'top-right'});
+      }
+      else{
+          setAddToCart("Adding...");
+          let MyFormData = new FormData();
+          MyFormData.append("color", Color);
+          MyFormData.append("size", Size);
+          MyFormData.append("quantity", Quantity);
+          MyFormData.append("product_code", ProductCode);
+          MyFormData.append("email", Email);
+
+          axios
+          .post(AppURL.addToCart,MyFormData)
+          .then((response) => {
+            if(response.data===1){
+              cogoToast.success("Product Added Successfully", {position:'top-right'});
+              setAddToCart("Add To Cart");
+              setTimeout(() => {
+                window.location.reload(); 
+              }, 1000);
+            }
+            else{
+              cogoToast.error("Your Request is not done! Try Again", {position:'top-right'})
+              setAddToCart("Add To Cart")
+            }
+          })
+          .catch((error) => {
+            cogoToast.error("Your Request is not done! Try Again", {position:'top-right'})
+              setAddToCart("Add To Cart")
+          });
+      }
+      
+
+  }
+
+  const colorOnChange = (e) =>{
+    setColor(e.target.value);
+  }
+
+  const sizeOnChange = (e) =>{
+    setSize(e.target.value);
+  }
+
+  const quantityOnChange = (e) =>{
+    setQuantity(e.target.value);
   }
 
   function PriceOption(price, special_price){
@@ -59,7 +133,7 @@ function ProductDetails({ data }) {
 
   var ColorDiv = "d-none";
   if(color!="na"){
-    let ColorArray = color.split(',');
+    let ColorArray = productColor.split(',');
     var ColorOption = ColorArray.map((ColorList, i)=>{
       return <option value={ColorList}>{ColorList}</option>
     })
@@ -70,8 +144,8 @@ function ProductDetails({ data }) {
   }
 
   var SizeDiv = "d-none";
-  if(size!="na"){
-    let SizeArray = size.split(',');
+  if(productSize!="na"){
+    let SizeArray = productSize.split(',');
     var SizeOption = SizeArray.map((SizeList, i)=>{
       return <option value={SizeList}>{SizeList}</option>
     })
@@ -80,6 +154,28 @@ function ProductDetails({ data }) {
   else{
     SizeDiv="d-none"
   }
+
+  if(isSize===null){
+    if(size!="na"){
+      setIsSize("YES");
+    }else{
+      setIsSize("NO")
+    }
+  }
+
+  if(isColor===null){
+    if(size!="na"){
+      setIsColor("YES");
+    }else{
+      setIsColor("NO")
+    }
+  }
+
+  if(productCode===null){
+    setProductCode(product_code);
+  }
+
+
 
   return (
 
@@ -164,7 +260,7 @@ function ProductDetails({ data }) {
 
                 <div className={ColorDiv}>
                   <h6 className="mt-2">Choose Color</h6>
-                  <select className="form-control form-select">
+                  <select onChange={colorOnChange} className="form-control form-select">
                     <option>Choose Color</option>
                     {ColorOption}
                   </select>
@@ -172,7 +268,7 @@ function ProductDetails({ data }) {
 
                 <div className={SizeDiv}>
                   <h6 className="mt-2">Choose Size</h6>
-                  <select className="form-control form-select">
+                  <select onChange={sizeOnChange} className="form-control form-select">
                     <option>Choose Size</option>
                     {SizeOption}
                   </select>
@@ -180,7 +276,7 @@ function ProductDetails({ data }) {
 
                 <div className="">
                   <h6 className="mt-2">Choose Quantity</h6>
-                  <select className="form-control form-select">
+                  <select onChange={quantityOnChange} className="form-control form-select">
                     <option>Choose Quantity</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -197,9 +293,9 @@ function ProductDetails({ data }) {
 
 
                 <div className="input-group mt-3">
-                  <button className="btn site-btn m-1 ">
+                  <button onClick={addToCart} className="btn site-btn m-1 ">
                     {" "}
-                    <i className="fa fa-shopping-cart"></i> Add To Cart
+                    <i className="fa fa-shopping-cart"></i> {AddToCart}
                   </button>
                   <button className="btn btn-primary m-1">
                     {" "}
