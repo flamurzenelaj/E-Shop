@@ -5,7 +5,7 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import Favourite from "../components/Favourite/Favourite";
 
-function FavoritePage() {
+function FavoritePage({user}) {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -18,7 +18,7 @@ function FavoritePage() {
         <NavMenuMobile />
       </div>
 
-      <Favourite />
+      <Favourite user={user} />
 
       <div className="Desktop">
         <FooterDesktop />

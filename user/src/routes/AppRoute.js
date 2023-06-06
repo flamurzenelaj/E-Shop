@@ -49,7 +49,7 @@ function AppRoute() {
             <Route path='/refund' element={<RefundPage />} />
             <Route path='/productdetails/:code' element={<ProductDetailsPage user={user} />} />
             <Route path='/notification' element={<NotificationPage />} />
-            <Route path='/favourite' element={<FavoritePage />} />
+            <Route path='/favourite' element={<FavoritePage user={user} />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/productcategory/:category' element={<ProductCategoryPage />} />

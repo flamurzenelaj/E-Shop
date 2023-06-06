@@ -15,7 +15,6 @@ function FeaturedProducts() {
       .get(AppURL.ProductListByRemark("/featured"))
       .then((response) => {
         setProductData(response.data);
-        console.log(response.data.length)
         setIsLoading("d-none");
         setMainDiv("")
       })

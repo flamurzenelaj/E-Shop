@@ -46,6 +46,18 @@ class AppURL {
     return this.BaseURL+"/cartcount/"+product_code;
   } 
 
+  static AddFavourite(product_code, email){
+    return this.BaseURL+"/favourite/"+product_code+"/"+email;
+  } 
+
+  static FavouriteList(email){
+    return this.BaseURL+"/favouritelist/"+email;
+  } 
+
+  static FavouriteRemove(product_code, email){
+    return this.BaseURL+"/favouriteremove/"+product_code+"/"+email;
+  } 
+
 
 }
 

@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\SiteInfoController;
-use App\Http\Controllers\Admin\CategoryController; 
-
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FavouriteController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
@@ -86,5 +86,8 @@ Route::post('/addtocart',[ProductCartController::class, 'addToCart']);
 
 Route::get('/cartcount/{product_code}',[ProductCartController::class, 'CartCount']);
 
+Route::get('/favourite/{product_code}/{email}',[FavouriteController::class, 'AddFavourite']);
 
+Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList']);
 
+Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class, 'FavouriteRemove']);
