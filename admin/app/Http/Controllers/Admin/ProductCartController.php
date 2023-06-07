@@ -47,8 +47,8 @@ class ProductCartController extends Controller
     }
 
     public function CartCount(Request $request){
-        $product_code = $request->product_code;
-        $result = ProductCart::count();
+        $email = $request->email;
+        $result = ProductCart::where('email',$email)->count();
         return $result;
     }
 
@@ -131,8 +131,12 @@ class ProductCartController extends Controller
 
         }
 
-        return $cartInsertDeleteResult;
+        return $cartInsertDeleteResult;        
+    }
 
-        
+    public function OrderListByUser(Request $request){
+        $email = $request->email;
+        $result = CartOrder::where('email',$email)->orderBy('id','DESC')->get();
+        return $result;
     }
 }

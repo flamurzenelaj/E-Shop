@@ -7,7 +7,7 @@ import MegaMenuAll from "../home/MegaMenuAll";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
 
-function NavMenuDesktop({ product_code }) {
+function NavMenuDesktop({ email }) {
   const navigate = useNavigate();
   const [mobileMenu, setMobileMenu] = useState(false);
   const containerRef = useRef(null);
@@ -15,11 +15,24 @@ function NavMenuDesktop({ product_code }) {
   const [searchRedirectedStatus, setSearchRedirectedStatus] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
+  const fetchData = () => {
+    let userEmail = email
+      axios
+        .get(AppURL.CartCount(userEmail))
+        .then((response) => {
+           setCartCount(response.data)
+            console.log(cartCount)
+        })
+        .catch((error) => {
+          // handle the error
+        });
+  };
+
   useEffect(() => {
-    axios.get(AppURL.CartCount(1)).then((response) => {
-      setCartCount(response.data);
-    });
-  });
+    if (email) {
+      fetchData();
+    }
+  }, [email]); 
 
   useEffect(() => {
     function handleClickOutside(event) {

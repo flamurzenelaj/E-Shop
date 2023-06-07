@@ -26,17 +26,18 @@ import OrderListPage from '../pages/OrderListPage'
 function AppRoute() {
 
   const [user, setUser] = useState({});
+  const [email, setEmail] = useState("");
 
   useEffect(()=>{
     axios.get(AppURL.UserData).then(response=>{
       setUser(response.data);
+      setEmail(response.data.email)
     }).catch(error=>{
-
     })
     },[]);
   return (
-    <Fragment>
-      <NavMenuDesktop user={user} setUser={setUser} />
+    <Fragment>     
+      <NavMenuDesktop email={email} />
         <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/login'  element={<UserLoginPage  user={user} setUser={setUser} />} />
@@ -56,7 +57,7 @@ function AppRoute() {
             <Route path='/productcategory/:category' element={<ProductCategoryPage />} />
             <Route path='/productsubcategory/:category/:subcategory' element={<ProductSubCategoryPage />} />
             <Route path='/productbysearch/:searchKey' element={<SearchPage />} />
-            <Route path='/orderlist' element={<OrderListPage />} />
+            <Route path='/orderlist' element={<OrderListPage user={user} />} />
         </Routes>
     </Fragment>
   )

@@ -42,8 +42,8 @@ class AppURL {
 
   static addToCart = this.BaseURL+"/addtocart"
 
-  static CartCount(product_code){
-    return this.BaseURL+"/cartcount/"+product_code;
+  static CartCount(email){
+    return this.BaseURL+"/cartcount/"+email;
   } 
 
   static AddFavourite(product_code, email){
@@ -53,6 +53,7 @@ class AppURL {
   static FavouriteList(email){
     return this.BaseURL+"/favouritelist/"+email;
   } 
+  
 
   static FavouriteRemove(product_code, email){
     return this.BaseURL+"/favouriteremove/"+product_code+"/"+email;
@@ -76,6 +77,10 @@ class AppURL {
 
   static CartOrder = this.BaseURL+"/cartorder";
 
+  
+  static OrderListByUser(email){
+    return this.BaseURL+"/orderlistbyuser/"+email;
+  } 
 
 }
 
