@@ -76,11 +76,14 @@ class AppURL {
   } 
 
   static CartOrder = this.BaseURL+"/cartorder";
-
+  
   
   static OrderListByUser(email){
     return this.BaseURL+"/orderlistbyuser/"+email;
   } 
+
+  static PostReview = this.BaseURL+"/postreview";
+
 
 }
 
