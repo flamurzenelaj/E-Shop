@@ -2,8 +2,14 @@ import React, { Component, Fragment, useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 function Notification() {
+  const navigate = useNavigate();
+  if (!localStorage.getItem("token")) {
+    navigate("/login");
+  }
+
   const [show, setShow] = useState(false);
   const [NotificationData, setNotificationData] = useState([]);
   const [NotificationMsg, setNotificationMsg] = useState("");

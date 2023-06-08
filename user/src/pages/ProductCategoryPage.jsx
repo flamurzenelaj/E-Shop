@@ -8,7 +8,7 @@ import axios from "axios";
 import AppURL from "../api/AppURL";
 import { useParams } from "react-router";
 
-function ProductCategoryPage() {
+function ProductCategoryPage({user}) {
   const [ProductData, setProductData] = useState([]);
   const { category } = useParams();
 
@@ -27,7 +27,7 @@ function ProductCategoryPage() {
   return (
     <Fragment>
       <div className="Desktop">
-        <NavMenuDesktop />
+      <NavMenuDesktop email={user.email} />
       </div>
       <div className="Mobile">
         <NavMenuMobile />

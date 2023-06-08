@@ -5,14 +5,15 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import Contact from '../components/common/Contact';
 
-function ContactPage() {
+function ContactPage({user}) {
   useEffect(()=>{
     window.scroll(0,0);
   },[])
   return (
     <Fragment>
     <div className="Desktop">
-      <NavMenuDesktop />
+    <NavMenuDesktop email={user.email} />
+
     </div>
     <div className="Mobile">
       <NavMenuMobile />

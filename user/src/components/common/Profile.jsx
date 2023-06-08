@@ -5,9 +5,14 @@ import { Link } from "react-router-dom";
 import Ariyan from "../../assets/images/kaziariyan.png"
 
 function Profile({ user }) {
+  const navigate = useNavigate();
+  if (!localStorage.getItem("token")) {
+    navigate("/login");
+  }
+
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {

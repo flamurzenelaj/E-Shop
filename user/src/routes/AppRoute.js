@@ -26,37 +26,34 @@ import OrderListPage from '../pages/OrderListPage'
 function AppRoute() {
 
   const [user, setUser] = useState({});
-  const [email, setEmail] = useState("");
 
   useEffect(()=>{
     axios.get(AppURL.UserData).then(response=>{
       setUser(response.data);
-      setEmail(response.data.email)
     }).catch(error=>{
     })
     },[]);
   return (
     <Fragment>     
-      <NavMenuDesktop email={email} />
         <Routes>
-            <Route path='/' element={<HomePage />} />
+            <Route path='/' element={<HomePage user={user} />} />
             <Route path='/login'  element={<UserLoginPage  user={user} setUser={setUser} />} />
             <Route path='/register' element={<RegisterPage user={user} setUser={setUser} />} />
             <Route path='/forget' element={<ForgetPasswordPage />} />
             <Route path='/reset/:id' element={<ResetPasswordPage />} />
             <Route path='/profile'  element={<ProfilePage user={user} setUser={setUser} />} />
-            <Route path='/contact' element={<ContactPage />} />
-            <Route path='/purchase' element={<PurchasePage />} />
-            <Route path='/privacy' element={<PrivacyPage />} />
-            <Route path='/refund' element={<RefundPage />} />
+            <Route path='/contact' element={<ContactPage user={user} />} />
+            <Route path='/purchase' element={<PurchasePage user={user} />} />
+            <Route path='/privacy' element={<PrivacyPage user={user} />} />
+            <Route path='/refund' element={<RefundPage user={user} />} />
             <Route path='/productdetails/:code' element={<ProductDetailsPage user={user} />} />
-            <Route path='/notification' element={<NotificationPage />} />
-            <Route path='/favourite' element={<FavoritePage user={user} />} />
+            <Route path='/notification' element={<NotificationPage user={user} />} />
+            <Route path='/favourite' element={<FavoritePage  user={user} />} />
             <Route path='/cart' element={<CartPage user={user} />} />
-            <Route path='/about' element={<AboutPage />} />
-            <Route path='/productcategory/:category' element={<ProductCategoryPage />} />
-            <Route path='/productsubcategory/:category/:subcategory' element={<ProductSubCategoryPage />} />
-            <Route path='/productbysearch/:searchKey' element={<SearchPage />} />
+            <Route path='/about' element={<AboutPage user={user} />} />
+            <Route path='/productcategory/:category' element={<ProductCategoryPage user={user} />} />
+            <Route path='/productsubcategory/:category/:subcategory' element={<ProductSubCategoryPage user={user} />} />
+            <Route path='/productbysearch/:searchKey' element={<SearchPage user={user} />} />
             <Route path='/orderlist' element={<OrderListPage user={user} />} />
         </Routes>
     </Fragment>

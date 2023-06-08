@@ -7,12 +7,12 @@ import FooterMobile from "../components/common/FooterMobile";
 import Profile from '../components/common/Profile';
 function ProfilePage({user}) {
     useEffect(()=>{
-        window.scroll(0,0);
+      window.scroll(0,0);
       },[])
   return (
     <Fragment>
     <div className="Desktop">
-      <NavMenuDesktop />
+    <NavMenuDesktop email={user.email} />
     </div>
     <div className="Mobile">
       <NavMenuMobile />

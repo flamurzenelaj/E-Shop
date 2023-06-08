@@ -8,7 +8,7 @@ import { useParams } from 'react-router';
 import axios from "axios";
 import SearchList from "../components/ProductDetails/SearchList";
 
-function SearchPage() {
+function SearchPage({user}) {
 const [ProductData, setProductData] = useState([]);
   const { searchKey } = useParams();
 
@@ -26,7 +26,7 @@ const [ProductData, setProductData] = useState([]);
   return (
     <Fragment>
     <div className="Desktop">
-      <NavMenuDesktop />
+    <NavMenuDesktop email={user.email} />
     </div>
     <div className="Mobile">
       <NavMenuMobile />

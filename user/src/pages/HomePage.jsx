@@ -12,7 +12,7 @@ import FooterMobile from "../components/common/FooterMobile";
 import axios from "axios";
 import AppURL from "../api/AppURL";
 
-function HomePage() {
+function HomePage({user}) {
   useEffect(()=>{
     window.scroll(0,0);
     GetVisitorDetails();
@@ -24,7 +24,7 @@ function HomePage() {
   return (
     <Fragment>
       <div className="Desktop">
-        <NavMenuDesktop />
+        <NavMenuDesktop email={user.email} />
         <HomeTop />
       </div>
       <div className="Mobile">

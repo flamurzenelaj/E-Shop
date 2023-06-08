@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Container, Row, Col, Form, Button, Breadcrumb } from "react-bootstrap";
 import SuggestedProducts from "./SuggestedProducts";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import InnerImageZoom from "react-inner-image-zoom";
 import ReviewList from "./ReviewList";
@@ -19,6 +19,9 @@ function ProductDetails({ data, user }) {
   const [productCode, setProductCode] = useState(null);
   const [AddToCart, setAddToCart] = useState("Add To Cart");
   const [AddToFav, setAddToFav] = useState("Favourite");
+  const [OrderNow, setOrderNow] = useState("Order Now")
+
+  const navigate = useNavigate();
 
   let title = data["productList"][0]["title"];
   let brand = data["productList"][0]["brand"];
@@ -89,6 +92,61 @@ function ProductDetails({ data, user }) {
             setAddToCart("Add To Cart");
             setTimeout(() => {
               window.location.reload();
+            }, 1000);
+          } else {
+            cogoToast.error("Your Request is not done! Try Again", {
+              position: "top-right",
+            });
+            setAddToCart("Add To Cart");
+          }
+        })
+        .catch((error) => {
+          cogoToast.error("Your Request is not done! Try Again", {
+            position: "top-right",
+          });
+          setAddToCart("Add To Cart");
+        });
+    }
+  };
+
+  const orderNow = () => {
+    let IsSize = isSize;
+    let IsColor = isColor;
+    let Color = color;
+    let Size = size;
+    let Quantity = quantity;
+    let ProductCode = product_code;
+    let Email = user.email;
+
+    if (IsColor === "YES" && Color.length === 0) {
+      cogoToast.error("Please Select Color", { position: "top-right" });
+    } else if (productSize !== "na" && Size.length === 0) {
+      cogoToast.error("Please Select Size", { position: "top-right" });
+    } else if (Quantity.length === 0) {
+      cogoToast.error("Please Select Quantity", { position: "top-right" });
+    } else if (!localStorage.getItem("token")) {
+      cogoToast.error("Please You Have to Login First", {
+        position: "top-right",
+      });
+    } else {
+      setOrderNow("Adding...");
+      let MyFormData = new FormData();
+      MyFormData.append("color", Color);
+      MyFormData.append("size", Size);
+      MyFormData.append("quantity", Quantity);
+      MyFormData.append("product_code", ProductCode);
+      MyFormData.append("email", Email);
+
+      axios
+        .post(AppURL.addToCart, MyFormData)
+        .then((response) => {
+          if (response.data === 1) {
+            cogoToast.success("Product Added Successfully", {
+              position: "top-right",
+            });
+            setOrderNow("Order Now");
+            setTimeout(() => {
+              navigate("/cart")
             }, 1000);
           } else {
             cogoToast.error("Your Request is not done! Try Again", {
@@ -346,9 +404,9 @@ function ProductDetails({ data, user }) {
                     {" "}
                     <i className="fa fa-shopping-cart"></i> {AddToCart}
                   </button>
-                  <button className="btn btn-primary m-1">
+                  <button onClick={orderNow} className="btn btn-primary m-1">
                     {" "}
-                    <i className="fa fa-car"></i> Order Now
+                    <i className="fa fa-car"></i> {OrderNow}
                   </button>
                   <button onClick={addToFav} className="btn btn-primary m-1">
                     {" "}

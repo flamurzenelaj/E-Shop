@@ -8,7 +8,7 @@ import AppURL from "../api/AppURL";
 import { useParams } from "react-router";
 import SubCategory from "../components/ProductDetails/SubCategory";
 
-function ProductSubCategoryPage() {
+function ProductSubCategoryPage({user}) {
   const [ProductData, setProductData] = useState([]);
   const { category } = useParams();
   const { subcategory } = useParams();
@@ -27,7 +27,7 @@ function ProductSubCategoryPage() {
   return (
     <Fragment>
     <div className="Desktop">
-      <NavMenuDesktop />
+    <NavMenuDesktop email={user.email} />
     </div>
     <div className="Mobile">
       <NavMenuMobile />

@@ -33,7 +33,7 @@ function ProductDetailsPage({user}) {
     return (
       <Fragment>
         <div className="Desktop">
-          <NavMenuDesktop />
+        <NavMenuDesktop email={user.email} />
         </div>
         <div className="Mobile">
           <NavMenuMobile />

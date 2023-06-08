@@ -6,6 +6,11 @@ import AppURL from "../../api/AppURL";
 import cogoToast from "cogo-toast";
 
 function Cart({ user }) {
+  const navigate = useNavigate();
+  if (!localStorage.getItem("token")) {
+    navigate("/login");
+  }
+
   const [ProductData, setProductData] = useState([]);
   const [confirmBtn, setConfirmBtn] = useState("Confirm Order");
   const [isLoading, setIsLoading] = useState("");
@@ -14,11 +19,6 @@ function Cart({ user }) {
   const [payment, setPayment] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const navigate = useNavigate();
-
-  if (!localStorage.getItem("token")) {
-    navigate("/login");
-  }
 
   const fetchData = () => {
     axios

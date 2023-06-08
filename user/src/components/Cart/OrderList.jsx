@@ -6,8 +6,12 @@ import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 function OrderList({ user }) {
-  const [ProductData, setProductData] = useState([]);
+  const navigate = useNavigate();
+  if (!localStorage.getItem("token")) {
+    navigate("/login");
+  }
 
+  const [ProductData, setProductData] = useState([]);
   const [name, setName] = useState("");
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
@@ -17,7 +21,6 @@ function OrderList({ user }) {
 
   const [show, setShow] = useState(false);
 
-  const navigate = useNavigate();
 
   const fetchData = () => {
     axios

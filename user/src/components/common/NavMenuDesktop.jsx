@@ -12,27 +12,25 @@ function NavMenuDesktop({ email }) {
   const [mobileMenu, setMobileMenu] = useState(false);
   const containerRef = useRef(null);
   const [searchKey, setSearchKey] = useState("");
-  const [searchRedirectedStatus, setSearchRedirectedStatus] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
-  const fetchData = () => {
-    let userEmail = email
-      axios
-        .get(AppURL.CartCount(userEmail))
-        .then((response) => {
-           setCartCount(response.data)
-            console.log(cartCount)
-        })
-        .catch((error) => {
-          // handle the error
-        });
+  const fetchData = (email) => {
+    axios
+      .get(AppURL.CartCount(email))
+      .then((response) => {
+        setCartCount(response.data);
+      })
+      .catch((error) => {
+        // handle the error
+      });
   };
 
   useEffect(() => {
-    if (email) {
-      fetchData();
+    if (email !== "" && email !== undefined) {
+      console.log(email);
+      fetchData(email);
     }
-  }, [email]); 
+  }, [email]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -69,78 +67,14 @@ function NavMenuDesktop({ email }) {
     localStorage.clear();
   };
 
-  let buttons;
-  if (localStorage.getItem("token")) {
-    buttons = (
-      <div>
-        <Link to="/favourite" className="btn">
-          <i className="fa h4 fa-heart"></i>{" "}
-          <sup>
-            <span className="badge text-white bg-danger">3</span>
-          </sup>
-        </Link>
-
-        <Link to="/notification" className="btn">
-          <i className="fa h4 fa-bell"></i>{" "}
-          <sup>
-            <span className="badge text-white bg-danger">5</span>
-          </sup>
-        </Link>
-
-        <a href="" className="btn">
-          <i className="fa h4 fa-mobile-alt"></i>
-        </a>
-        <Link to="/profile" className="h4 btn">
-          PROFILE
-        </Link>
-        <Link to="/login" onClick={logout} className="h4 btn">
-          LOGOUT
-        </Link>
-        <Link to="/cart" className="cart-btn">
-          <i className="fa fa-shopping-cart"></i> {cartCount} Items
-        </Link>
-      </div>
-    );
-  } else {
-    buttons = (
-      <div>
-        <Link to="/favourite" className="btn">
-          <i className="fa h4 fa-heart"></i>{" "}
-          <sup>
-            <span className="badge text-white bg-danger">3</span>
-          </sup>
-        </Link>
-
-        <Link to="/notification" className="btn">
-          <i className="fa h4 fa-bell"></i>{" "}
-          <sup>
-            <span className="badge text-white bg-danger">5</span>
-          </sup>
-        </Link>
-
-        <a href="" className="btn">
-          <i className="fa h4 fa-mobile-alt"></i>
-        </a>
-        <Link to="/login" className="h4 btn">
-          LOGIN
-        </Link>
-        <Link to="/register" className="h4 btn">
-          REGISTER
-        </Link>
-        <Link to="/cart" className="cart-btn">
-          <i className="fa fa-shopping-cart"></i>0 Items
-        </Link>
-      </div>
-    );
-  }
-
   return (
     <Fragment>
       <div className="TopSectionDown">
-        <Navbar fixed={"top"}>
-          <Container
+        {/* ... */}
+        <Navbar  fixed={"top"}>
+        <Container
             fluid={true}
-            className="fixed-top shadow-sm p-2 mb-0 navbar"
+            className="fixed-top navbar shadow-sm p-2 mb-0"
           >
             <Col lg={3} md={3} sm={12} xs={12}>
               <Button
@@ -175,11 +109,69 @@ function NavMenuDesktop({ email }) {
                 </Button>
               </div>
             </Col>
+        <Col className="p-1 mt-1 nav-right" lg={5} md={5} sm={12} xs={12}>
+          {localStorage.getItem("token") ? (
+            <div>
+              <Link to="/favourite" className="btn">
+                <i className="fa h4 fa-heart"></i>{" "}
+                <sup>
+                  <span className="badge text-white bg-danger">3</span>
+                </sup>
+              </Link>
 
-            <Col className="p-1 mt-1 nav-right" lg={5} md={5} sm={12} xs={12}>
-              {buttons}
-            </Col>
-          </Container>
+              <Link to="/notification" className="btn">
+                <i className="fa h4 fa-bell"></i>{" "}
+                <sup>
+                  <span className="badge text-white bg-danger">5</span>
+                </sup>
+              </Link>
+
+              <a href="" className="btn">
+                <i className="fa h4 fa-mobile-alt"></i>
+              </a>
+              <Link to="/profile" className="h4 btn">
+                PROFILE
+              </Link>
+              <Link to="/login" onClick={logout} className="h4 btn">
+                LOGOUT
+              </Link>
+              <Link to="/cart" className="cart-btn">
+                <i className="fa fa-shopping-cart"></i> {cartCount} Items
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link to="/favourite" className="btn">
+                <i className="fa h4 fa-heart"></i>{" "}
+                <sup>
+                  <span className="badge text-white bg-danger">3</span>
+                </sup>
+              </Link>
+
+              <Link to="/notification" className="btn">
+                <i className="fa h4 fa-bell"></i>{" "}
+                <sup>
+                  <span className="badge text-white bg-danger">5</span>
+                </sup>
+              </Link>
+
+              <a href="" className="btn">
+                <i className="fa h4 fa-mobile-alt"></i>
+              </a>
+              <Link to="/login" className="h4 btn">
+                LOGIN
+              </Link>
+              <Link to="/register" className="h4 btn">
+                REGISTER
+              </Link>
+              <Link to="/cart" className="cart-btn">
+                <i className="fa fa-shopping-cart"></i> 0 Items
+              </Link>
+            </div>
+          )}
+        </Col>
+        {/* ... */}
+        </Container>
         </Navbar>
       </div>
 
