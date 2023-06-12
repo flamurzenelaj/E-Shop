@@ -33,7 +33,7 @@ function Categories() {
               src={CatList.category_image}
               alt=""
             />
-            <h6 className="category-name">MOBILE</h6>
+            <h4 className="category-name">{CatList.category_name}</h4>
           </Card.Body>
         </Card>
         </Link>
