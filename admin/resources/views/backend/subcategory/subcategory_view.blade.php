@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h5 class="mb-0">All Categories</h5>
+                            <h5 class="mb-0">All SubCategories</h5>
                         </div>
                         <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
@@ -18,27 +18,21 @@
                             <thead class="table-light">
                                 <tr>
                                     <th>SL</th>
-                                    <th>Category Image</th>
                                     <th>Category Name</th>
+                                    <th>SubCategory Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php($i=1)
-                                @foreach ($category as $item)
+                                @foreach ($subcategory as $item)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="recent-product-img">
-                                                <img src="{{$item->category_image}}" alt="">
-                                            </div>
-                                        </div>
-                                    </td>
                                     <td>{{$item->category_name}}</td>
+                                    <td>{{$item->subcategory_name}}</td>
                                     <td>
-                                    <a href="{{route('category.edit',$item->id)}}" class="btn btn-info">Edit</a>
-                                    <a href="{{route('category.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                    <a href="{{route('subcategory.edit',$item->id)}}" class="btn btn-info">Edit</a>
+                                    <a href="{{route('subcategory.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
                                 </td>
                                 </tr>
                                 @endforeach
