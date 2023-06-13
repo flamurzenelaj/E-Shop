@@ -139,4 +139,56 @@ class ProductCartController extends Controller
         $result = CartOrder::where('email',$email)->orderBy('id','DESC')->get();
         return $result;
     }
+
+    //Admin Dashboard
+
+    public function PendingOrder(){
+        $orders = CartOrder::where('order_status','Pending')->orderBy('id','DESC')->get();
+        return view('backend.order.pending_orders',compact('orders'));
+    }
+
+    public function ProcessingOrder(){
+        $orders = CartOrder::where('order_status','Processing')->orderBy('id','DESC')->get();
+        return view('backend.order.processing_orders',compact('orders'));
+    }
+
+    public function CompletedOrder(){
+        $orders = CartOrder::where('order_status','Completed')->orderBy('id','DESC')->get();
+        return view('backend.order.completed_orders',compact('orders'));
+    }
+
+    public function OrderDetails($id){
+        $order = CartOrder::findOrFail($id);
+        return view('backend.order.order_details',compact('order'));
+    }
+
+    public function OrderDelete($id)
+    {
+        CartOrder::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Order Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function changeOrderStatus($id)
+    {
+        $cartOrder = CartOrder::findOrFail($id);
+
+        if ($cartOrder->order_status == 'Pending') {
+            $cartOrder->update(['order_status' => 'Processing']);
+        } else {
+            $cartOrder->update(['order_status' => 'Completed']);
+        }
+
+        $notification = array(
+            'message' => 'Order Status Changed Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }

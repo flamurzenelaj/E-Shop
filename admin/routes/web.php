@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\AdminController;
@@ -76,3 +77,14 @@ Route::get('message/delete/{id}',[ContactController::class, 'DeleteMessage'])->n
 Route::get('all/review',[ReviewController::class, 'GetAllReview'])->name('all.review');
 
 Route::get('review/delete/{id}',[ReviewController::class, 'DeleteReview'])->name('review.delete');
+
+
+Route::prefix('order')->group(function(){
+    Route::get('/pending',[ProductCartController::class, 'PendingOrder'])->name('pending.order');
+    Route::get('/processing',[ProductCartController::class, 'ProcessingOrder'])->name('processing.order');
+    Route::get('/completed',[ProductCartController::class, 'CompletedOrder'])->name('completed.order');
+    Route::get('/details/{id}',[ProductCartController::class, 'OrderDetails'])->name('order.details');
+    Route::get('/delete/{id}', [ProductCartController::class, 'OrderDelete'])->name('order.delete');
+    Route::get('/status/change/{id}', [ProductCartController::class, 'changeOrderStatus'])->name('change.status');
+
+});
