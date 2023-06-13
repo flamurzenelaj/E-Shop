@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -67,4 +68,6 @@ Route::prefix('product')->group(function(){
     Route::get('/delete/{id}', [ProductListController::class, 'DeleteProduct'])->name('product.delete');
 });
 
+Route::get('all/message',[ContactController::class, 'GetAllMessage'])->name('contact.message');
 
+Route::get('message/delete/{id}',[ContactController::class, 'DeleteMessage'])->name('message.delete');
