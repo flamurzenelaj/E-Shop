@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,15 @@ Route::prefix('subcategory')->group(function(){
     Route::get('/edit/{id}',[CategoryController::class, 'EditSubCategory'])->name('subcategory.edit');
     Route::post('/update',[CategoryController::class, 'UpdateSubCategory'])->name('subcategory.update');
     Route::get('/delete/{id}',[CategoryController::class, 'DeleteSubCategory'])->name('subcategory.delete');
-   
 });
+
+Route::prefix('product')->group(function(){
+    Route::get('/all',[ProductListController::class, 'GetAllProduct'])->name('all.product');
+    Route::get('/add',[ProductListController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store',[ProductListController::class, 'StoreProduct'])->name('product.store');
+    Route::get('/edit/{id}', [ProductListController::class, 'EditProduct'])->name('product.edit');
+    Route::post('/update', [ProductListController::class, 'UpdateProduct'])->name('product.update');
+    Route::get('/delete/{id}', [ProductListController::class, 'DeleteProduct'])->name('product.delete');
+});
+
 
