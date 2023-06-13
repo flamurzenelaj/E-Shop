@@ -70,6 +70,14 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{route('all.review')}}">
+                <div class="parent-icon"><i class="bx bx-repeat"></i>
+                </div>
+                <div class="menu-title">Product Review</div>
+            </a>
+        </li>
+
 
         <li>
             <a class="has-arrow" href="javascript:;">
