@@ -290,16 +290,17 @@ function ProductDetails({ data, user }) {
             </Breadcrumb.Item>
           </Breadcrumb>
         </div>
-        <Row className="p-2">
+        <Row className="p-4">
           <Col
-            className="shadow-sm bg-white pb-3 mt-4"
+            className="shadow-sm bg-white pt-4 pb-3 mt-4 "
             md={12}
             lg={12}
             sm={12}
             xs={12}
           >
             <Row>
-              <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
+              <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
+                <div className="details">
                 <InnerImageZoom
                   className="detailimage"
                   zoomScale={1.8}
@@ -308,7 +309,7 @@ function ProductDetails({ data, user }) {
                   zoomSrc={previewImg}
                 />
                 <Container className="my-3">
-                  <Row>
+                  <Row >
                     <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
                       <img
                         className="w-100 smallimage product-sm-img"
@@ -339,8 +340,9 @@ function ProductDetails({ data, user }) {
                     </Col>
                   </Row>
                 </Container>
+                </div>
               </Col>
-              <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
+              <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
                 <h5 className="Product-Name">{title}</h5>
                 <h6 className="section-sub-title">{short_description}</h6>
                 {PriceOption(price, special_price)}

@@ -18,22 +18,25 @@
      font-weight: 400;
  }
 
- .bigimage{
-     height: 400px;
-     margin-left: 150px;
- }
+
  .smallimage{
      height: 100px;
- }
- .product-sm-img{
-
  }
  .product-sm-img:hover{
     cursor: pointer;
  }
  .detailimage{    
-    max-width: 60%;
-    height: 499px;
-    margin: 0px;
-    margin-left: 142px;    
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+
+ .details{
+    min-height: 536px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
  }

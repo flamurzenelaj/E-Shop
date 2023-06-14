@@ -28,8 +28,8 @@ function FooterMobile() {
               </a>
             </Col>
             
-           
-            <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
+            
+            <Col className="p-2 footer-menu" lg={3} md={3} sm={6} xs={12}>
               <h5 className="footer-menu-title">DOWNLOAD APPS</h5>
               <a>
                 <img src={Google} alt="1" />

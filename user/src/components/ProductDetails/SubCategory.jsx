@@ -6,7 +6,7 @@ function SubCategory({Category, SubCategory, ProductData}) {
   const MyView = ProductData.map((ProductList, i) => {
     if (ProductList.special_price === "na") {
       return (
-        <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+        <Col className="p-2" xl={3} lg={3} md={3} sm={6} xs={6}>
           <Link className="text-link" to={"/productdetails/" + ProductList.id}>
           <Card className="image-box card w-100">
             <img className="center w-75" src={ProductList.image} alt="" />
@@ -23,7 +23,7 @@ function SubCategory({Category, SubCategory, ProductData}) {
       );
     } else {
       return (
-        <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+        <Col className="p-2" xl={3} lg={3} md={3} sm={6} xs={6}>
           <Link className="text-link" to={"/productdetails/" + ProductList.id}>
           <Card className="image-box card w-100">
             <img className="center w-75" src={ProductList.image} alt="" />

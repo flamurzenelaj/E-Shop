@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Button, Card, Col, Container, ListGroup, ListGroupItem, Modal, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import Ariyan from "../../assets/images/kaziariyan.png"
+import ProfilePhoto from "../../assets/images/profile.jpg"
 
 function Profile({ user }) {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function Profile({ user }) {
         <Row>
           <Col lg={4} md={4} sm={12}>
             <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={Ariyan} className="userprofile" />
+              <Card.Img variant="top" src={ProfilePhoto} className="userprofile" />
 
               <ListGroup className="list-group-flush">
                 <ListGroupItem>

@@ -26,7 +26,7 @@ function Collection() {
   const MyView = CollectionList.map((collectionList, i) => {
     if (collectionList.special_price == "na") {
       return (
-        <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+        <Col className="p-2" xl={2} lg={3} md={3} sm={4} xs={6}>
           <Link className="text-link" to={"/productdetails/" + collectionList.id}>
           <Card className="image-box card w-100">
             <img className="center w-75" src={collectionList.image} alt="" />
@@ -43,7 +43,7 @@ function Collection() {
       );
     } else {
       return (
-        <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+        <Col className="p-2" xl={2} lg={3} md={3} sm={4} xs={6}>
           <Link className="text-link" to={"/productdetails/" + collectionList.id}>
           <Card className="image-box card w-100">
             <img className="center w-75" src={collectionList.image} alt="" />
@@ -64,7 +64,7 @@ function Collection() {
     <Fragment>
       <CollectionLoading isLoading={isLoading} />
       <div className={mainDiv}>
-      <Container className="text-center" fluid={true}>
+      <Container className="text-center " fluid={true}>
         <div className="section-title text-center mb-55">
           <h2>PRODUCT COLLECTION</h2>
           <p>Some of our Exclusive Collection, You may like.</p>

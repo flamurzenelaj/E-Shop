@@ -209,7 +209,7 @@ function Cart({ user }) {
   });
   return (
     <Fragment>
-      <Container fluid={true}>
+      <Container >
         <div className="section-title text-center mb-55">
           <h2>Product Cart List</h2>
         </div>
@@ -225,7 +225,7 @@ function Cart({ user }) {
                   <div className="row">
                     <div className="col-md-12 p-1  col-lg-12 col-sm-12 col-12">
                       <h5 className="Product-Name text-danger">
-                        Total Due: {totalPriceSum} $
+                        Total Price: {totalPriceSum}$
                       </h5>
                     </div>
                   </div>
@@ -234,12 +234,13 @@ function Cart({ user }) {
                       <label className="form-label">Choose City</label>
                       <select onChange={cityOnChange} className="form-control">
                         <option value="">Choose</option>
-                        <option value="Dhaka">Assam</option>
-                        <option value="Dhaka">Bihar </option>
-                        <option value="Dhaka">Goa </option>
-                        <option value="Dhaka">Gujarat </option>
-                        <option value="Dhaka">Himachal Pradesh </option>
-                        <option value="Dhaka">Punjab </option>
+                        <option value="Dhaka">Prishtina</option>
+                        <option value="Dhaka">Peja </option>
+                        <option value="Dhaka">Prizreni </option>
+                        <option value="Dhaka">Gjakova </option>
+                        <option value="Dhaka">Ferizaji </option>
+                        <option value="Dhaka">Gjilani </option>
+                        <option value="Dhaka">Mitrovica </option>
                       </select>
                     </div>
                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
@@ -251,7 +252,6 @@ function Cart({ user }) {
                         <option value="Cash On Delivery">
                           Cash On Delivery
                         </option>
-                        <option value="Cash On Delivery">Stripe</option>
                       </select>
                     </div>
                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">

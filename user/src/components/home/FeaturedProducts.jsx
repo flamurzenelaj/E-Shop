@@ -25,7 +25,7 @@ function FeaturedProducts() {
   const MyView = FeaturedList.map((featuredlist, i) => {
     if (featuredlist.special_price == "na") {
       return (
-        <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+        <Col className="p-2" key={1} xl={2} lg={3} md={3} sm={4} xs={6}>
           <Link className="text-link" to={"/productdetails/" + featuredlist.id}>
             <Card className="image-box card">
               <img className="center" src={featuredlist.image} alt="" />
@@ -42,7 +42,7 @@ function FeaturedProducts() {
       );
     } else {
       return (
-        <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+        <Col className="p-2" key={1} xl={2} lg={3} md={3} sm={4} xs={6}>
           <Link className="text-link" to={"/productdetails/" + featuredlist.id}>
             <Card className="image-box card">
               <img className="center" src={featuredlist.image} alt="" />
@@ -74,7 +74,7 @@ function FeaturedProducts() {
         </div>
         <SliderLoading isLoading={isLoading} />
         <div className={mainDiv}>
-        <Row>{MyView}</Row>
+        <Row className="p-3">{MyView}</Row>
         </div>
       </Container>
       </div>

@@ -40,7 +40,7 @@ function SuggestedProducts({ subcategory }) {
         );
       } else {
         return (
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+          <Col className="p-2" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
             <Link
               className="text-link"
               to={"/productdetails/" + ProductList.id}
@@ -66,13 +66,13 @@ function SuggestedProducts({ subcategory }) {
     });
     return (
       <Fragment>
-        <Container className="text-center" fluid={true}>
+        <Container className="text-center " fluid={true}>
           <div className="section-title text-center mb-55">
             <h2>YOU MAY ALSO LIKE</h2>
             <p>Some of our Exclusive Collection, You may like.</p>
           </div>
 
-          <Row>{MyView}</Row>
+          <Row className="p-3">{MyView}</Row>
         </Container>
       </Fragment>
     );
