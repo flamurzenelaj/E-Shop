@@ -27,7 +27,6 @@ function NavMenuDesktop({ email }) {
 
   useEffect(() => {
     if (email !== "" && email !== undefined) {
-      console.log(email);
       fetchData(email);
     }
   }, [email]);

@@ -11,6 +11,7 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import axios from "axios";
 import AppURL from "../api/AppURL";
+import Chatbot from "../components/common/Chatbot";
 
 function HomePage({user}) {
   useEffect(()=>{
@@ -41,6 +42,7 @@ function HomePage({user}) {
       <div className="Mobile">
         <FooterMobile />
       </div>
+      <Chatbot />
     </Fragment>
   );
 }

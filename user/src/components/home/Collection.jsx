@@ -64,12 +64,12 @@ function Collection() {
     <Fragment>
       <CollectionLoading isLoading={isLoading} />
       <div className={mainDiv}>
-      <Container className="text-center " fluid={true}>
+      <Container className="text-center" fluid={true}>
         <div className="section-title text-center mb-55">
           <h2>PRODUCT COLLECTION</h2>
           <p>Some of our Exclusive Collection, You may like.</p>
         </div>
-        <Row>{MyView}</Row>
+        <Row className="p-3">{MyView}</Row>
       </Container>
       </div>
     </Fragment>
