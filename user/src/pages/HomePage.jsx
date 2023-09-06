@@ -12,6 +12,7 @@ import FooterMobile from "../components/common/FooterMobile";
 import axios from "axios";
 import AppURL from "../api/AppURL";
 import Chatbot from "../components/common/Chatbot";
+import Articles from "../components/Articles";
 
 function HomePage({user}) {
   useEffect(()=>{
@@ -32,6 +33,7 @@ function HomePage({user}) {
         <NavMenuMobile />
         <HomeTopMobile />
       </div>
+      <Articles />
       <FeaturedProducts />
       <NewArrival />
       <Categories />
