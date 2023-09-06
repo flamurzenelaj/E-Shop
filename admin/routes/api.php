@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgetController;
 use App\Http\Controllers\User\ResetController;
@@ -66,6 +68,20 @@ Route::get('/productlistbyremark/{remark}',[ProductListController::class, 'Produ
 Route::get('/productlistbycategory/{category}',[ProductListController::class, 'ProductListByCategory']);
 
 Route::get('/productlistbysubcategory/{category}/{subcategory}',[ProductListController::class, 'ProductListBySubCategory']);
+
+Route::get('/allarticles',[ArticleController::class, 'AllArticles']);
+Route::post('/addarticle',[ArticleController::class, 'AddArticle']);
+Route::get('/article/{id}', [ArticleController::class, 'getArticle']);
+Route::put('/article/{id}', [ArticleController::class, 'updateArticle']);
+Route::delete('/article/{id}', [ArticleController::class, 'deleteArticle']);
+
+Route::get('/allcomments',[CommentController::class, 'allComments']);
+Route::post('/addcomment',[CommentController::class, 'createComment']);
+Route::get('/comment/{article}', [CommentController::class, 'commentsByArticle']);
+Route::put('/comment/{id}', [CommentController::class, 'updateComment']);
+Route::delete('/comment/{id}', [CommentController::class, 'deleteComment']);
+
+
 
 // Slider Route
 Route::get('/allslider',[SliderController::class, 'AllSlider']);
